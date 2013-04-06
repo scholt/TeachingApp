@@ -1,5 +1,7 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import java.util.ArrayList;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
+import de.tobiasfiebiger.mobile.teachapp.model.Material;
 import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 
 /**
@@ -49,14 +52,23 @@ public class MaterialGridFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	View rootView = inflater.inflate(R.layout.fragment_material_detail, container, false);
-
+	MaterialAdapter ma = null;
 	try {
 	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
-	  gridview.setAdapter(new MaterialAdapter(getActivity()));
+	  ma = new MaterialAdapter(getActivity());
+	  gridview.setAdapter(ma);
 	} catch (Exception e) {
 	  e.printStackTrace();
 	}
-
+	
+	ArrayList<Material> array = new ArrayList<Material>();
+	array.add(new Material());
+	array.add(new Material());
+	
+	if (ma != null) 
+		ma.setData(array);
 	return rootView;
   }
+  
+  
 }

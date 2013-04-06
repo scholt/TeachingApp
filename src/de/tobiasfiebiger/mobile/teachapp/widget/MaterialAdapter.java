@@ -46,7 +46,7 @@ public class MaterialAdapter extends MasterAdapter<Material> {
 			@Override
 			public void onCacheError(Exception error) {
 				// TODO Auto-generated method stub
-				
+				//Log(error, "image download error");
 			}
 			
 			@Override
