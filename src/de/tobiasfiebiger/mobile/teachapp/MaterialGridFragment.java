@@ -23,12 +23,7 @@ public class MaterialGridFragment extends Fragment {
    * The fragment argument representing the item ID that this fragment
    * represents.
    */
-  public static final String     ARG_ITEM_ID = "item_id";
-
-  /**
-   * The dummy content this fragment is presenting.
-   */
-  private DummyContent.DummyItem mItem;
+  public static final String ARG_ITEM_ID = "item_id";
 
   /**
    * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,10 +37,7 @@ public class MaterialGridFragment extends Fragment {
 	super.onCreate(savedInstanceState);
 
 	if (getArguments().containsKey(ARG_ITEM_ID)) {
-	  // Load the dummy content specified by the fragment
-	  // arguments. In a real-world scenario, use a Loader
-	  // to load content from a content provider.
-	  mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+
 	}
   }
 
