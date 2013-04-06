@@ -9,6 +9,10 @@ import com.evernote.edam.type.Note;
 
 public class Material {
 
+  public Material(Note note) {
+	this.note = note;
+  }
+
   private final static String TAG = "Material";
 
   private Note                note;

@@ -1,6 +1,7 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.evernote.edam.error.EDAMSystemException;
 import com.evernote.edam.error.EDAMUserException;
@@ -20,8 +21,15 @@ public class MaterialGridFragment extends Fragment {
 
   public static final String ARG_ITEM_ID = "item_id";
   public static final String TAG = "MaterialGridFragment";
+  
+  public ArrayList<Material> mMaterialList;
 
   public MaterialGridFragment() {
+  }
+  
+  public void setMaterialData(ArrayList<Material> materialList) {
+	mMaterialList = materialList;
+	Log.i(TAG, mMaterialList.toString());
   }
 
   @Override
@@ -47,12 +55,8 @@ public class MaterialGridFragment extends Fragment {
 	  e.printStackTrace();
 	}
 
-	ArrayList<Material> array = new ArrayList<Material>();
-	array.add(new Material());
-	array.add(new Material());
-
 	if (materialAdapter != null) {
-	  materialAdapter.setData(array);
+	  materialAdapter.setData(mMaterialList);
 	}
 	return rootView;
   }
