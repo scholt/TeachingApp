@@ -9,11 +9,11 @@ public class MockUtil {
 
   public static ArrayList<Subject> createMockSubjectList() {
 	ArrayList<Subject> mockSubjects = new ArrayList<Subject>();
-	mockSubjects.add(createSubject("id:1", "English", 23, R.drawable.subject_english));
-	mockSubjects.add(createSubject("id:2", "History", 47, R.drawable.subject_history));
-	mockSubjects.add(createSubject("id:3", "Math", 13, R.drawable.subject_math));
-	mockSubjects.add(createSubject("id:4", "Physics", 666, R.drawable.subject_physics));
-	mockSubjects.add(createSubject("id:5", "Sport", 123, R.drawable.subject_sport));
+	mockSubjects.add(createSubject("id:1", "English", 23, R.drawable.subject_english_50px));
+	mockSubjects.add(createSubject("id:2", "History", 47, R.drawable.subject_history_50px));
+	mockSubjects.add(createSubject("id:3", "Math", 13, R.drawable.subject_math_50px));
+	mockSubjects.add(createSubject("id:4", "Physics", 666, R.drawable.subject_physics_50px));
+	mockSubjects.add(createSubject("id:5", "Sport", 123, R.drawable.subject_sport_50px));
 	return mockSubjects;
   }
 
