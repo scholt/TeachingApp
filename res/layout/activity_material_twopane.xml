@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".MaterialListActivity" >
+    tools:context=".SubjectListActivity" >
 
     <!--
     This layout is a two-pane layout for the Materials
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/material_list"
-        android:name="de.tobiasfiebiger.mobile.teachapp.MaterialListFragment"
+        android:name="de.tobiasfiebiger.mobile.teachapp.SubjectListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

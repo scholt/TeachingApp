@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.tobiasfiebiger.mobile.teachapp.MaterialListActivity"
+            android:name="de.tobiasfiebiger.mobile.teachapp.SubjectListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.tobiasfiebiger.mobile.teachapp.MaterialDetailActivity"
+            android:name="de.tobiasfiebiger.mobile.teachapp.MaterialListActivity"
             android:label="@string/title_material_detail"
-            android:parentActivityName=".MaterialListActivity" >
+            android:parentActivityName=".SubjectListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MaterialListActivity" />
