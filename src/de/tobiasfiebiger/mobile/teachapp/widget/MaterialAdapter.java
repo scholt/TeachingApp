@@ -40,6 +40,7 @@ public class MaterialAdapter extends MasterAdapter<Material> {
 		  if (holder.image != null) {
 			// holder.image.loadImage("http://upload.wikimedia.org/wikipedia/commons/2/23/Lake_mapourika_NZ.jpeg");
 			holder.image.loadImage(currentMaterial.getThumbnailURL().toString());
+			holder.text.setText(currentMaterial.getTitle());
 		  } else {
 			Toast.makeText(TeachingApp.getApp(), "image in view holder is null", Toast.LENGTH_LONG).show();
 		  }
