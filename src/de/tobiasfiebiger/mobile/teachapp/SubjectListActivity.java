@@ -79,10 +79,6 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
 
 	// TODO: If exposing deep links into your app, handle intents here.
 	
-	if( !mEvernoteSession.isLoggedIn()) {
-		mEvernoteSession.authenticate(this);
-	}
-	
 	
   }
   
@@ -159,6 +155,13 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
 	  mFragment = new MaterialGridFragment();
 	  mFragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, mFragment).commit();
+	  
+	  if(mEvernoteSession.isLoggedIn()) {
+			getNotelist("english");
+	  } else {
+			mEvernoteSession.authenticate(this);
+      }
+	 
 	} else {
 	  // In single-pane mode, simply start the detail activity
 	  // for the selected item ID.
