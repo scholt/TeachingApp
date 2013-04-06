@@ -34,5 +34,9 @@ public class Material {
 	}
 	return thumbnailUrl;
   }
+  
+  public String toString() {
+	  return "<Material:"+ getTitle() + ">";
+  }
 
 }

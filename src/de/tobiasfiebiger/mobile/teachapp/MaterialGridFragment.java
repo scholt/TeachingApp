@@ -23,6 +23,8 @@ public class MaterialGridFragment extends Fragment {
   public static final String TAG = "MaterialGridFragment";
   
   public ArrayList<Material> mMaterialList;
+  
+  public MaterialAdapter mAdapter;
 
   public MaterialGridFragment() {
   }
@@ -30,6 +32,9 @@ public class MaterialGridFragment extends Fragment {
   public void setMaterialData(ArrayList<Material> materialList) {
 	mMaterialList = materialList;
 	Log.i(TAG, mMaterialList.toString());
+	if (mAdapter != null) {
+		mAdapter.setData(mMaterialList);
+	}
   }
 
   @Override
@@ -44,20 +49,19 @@ public class MaterialGridFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	View rootView = inflater.inflate(R.layout.fragment_material_detail, container, false);
-	MaterialAdapter materialAdapter = null;
 	try {
 	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
-	  materialAdapter = new MaterialAdapter(getActivity());
-	  gridview.setAdapter(materialAdapter);
+	  mAdapter = new MaterialAdapter(getActivity());
+	  gridview.setAdapter(mAdapter);
 	} catch (Exception e) {
 	  e.printStackTrace();
 	}
 
-	ArrayList<Material> array = new ArrayList<Material>();
-
-	if (materialAdapter != null) {
-	  materialAdapter.setData(mMaterialList);
-	}
+//	ArrayList<Material> array = new ArrayList<Material>();
+//
+//	if (mAdapter != null) {
+//	  mAdapter.setData(mMaterialList);
+//	}
 	return rootView;
   }
 
