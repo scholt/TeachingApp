@@ -1,8 +1,15 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import java.util.List;
+
+import com.evernote.client.android.OnClientCallback;
+import com.evernote.edam.type.Notebook;
+import com.evernote.thrift.transport.TTransportException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 /**
@@ -14,10 +21,13 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link MaterialGridFragment}.
  */
-public class MaterialListActivity extends Activity {
+public class MaterialListActivity extends TeachActivity {
+	
+  public static final String TAG = "TeachActivity";
+  
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_material_detail);
 
@@ -41,9 +51,13 @@ public class MaterialListActivity extends Activity {
 	  MaterialGridFragment fragment = new MaterialGridFragment();
 	  fragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().add(R.id.material_detail_container, fragment).commit();
+	  
+	 
 	}
+	
 
   }
+  
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {

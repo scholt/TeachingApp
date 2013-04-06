@@ -1,8 +1,15 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import java.util.List;
+
+import com.evernote.client.android.OnClientCallback;
+import com.evernote.edam.type.Notebook;
+import com.evernote.thrift.transport.TTransportException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
@@ -22,16 +29,21 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * {@link SubjectListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class SubjectListActivity extends Activity implements SubjectListFragment.Callbacks {
+public class SubjectListActivity extends TeachActivity implements SubjectListFragment.Callbacks {
 
+	public static final String TAG = "SubjectListActivity";
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet
    * device.
    */
   private boolean mTwoPane;
+  
+  public void SubjectListActivity() {
+	  
+  }
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_subject_list);
 
@@ -58,6 +70,31 @@ public class SubjectListActivity extends Activity implements SubjectListFragment
 
 	// TODO: If exposing deep links into your app, handle intents here.
   }
+  
+  public void getNotelist(String subjectMame) {
+		try {
+			
+			mEvernoteSession.getClientFactory().createNoteStoreClient().listNotebooks(new OnClientCallback<List<Notebook>>() {
+				int mSelectedPos = -1;
+				
+				@Override
+				public void onSuccess(final List<Notebook> notebooks) {
+					for(Notebook notebook : notebooks) {
+						Log.i(TAG, notebook.getName());
+					}
+				}
+
+				@Override
+				public void onException(Exception exception) {
+					
+				}
+			});
+		}
+		catch (TTransportException e) {
+			// TODO Auto-generated catch block
+			Log.e(TAG, e.toString());
+		}
+	  }
 
   /**
    * Callback method from {@link SubjectListFragment.Callbacks} indicating that
@@ -75,6 +112,8 @@ public class SubjectListActivity extends Activity implements SubjectListFragment
 	  MaterialGridFragment fragment = new MaterialGridFragment();
 	  fragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
+	  
+	  // getNotelist("History");
 
 	} else {
 	  // In single-pane mode, simply start the detail activity
