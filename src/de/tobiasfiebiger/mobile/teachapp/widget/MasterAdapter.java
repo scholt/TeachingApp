@@ -2,13 +2,20 @@ package de.tobiasfiebiger.mobile.teachapp.widget;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public abstract class MasterAdapter<T> extends BaseAdapter {
 
-  protected ArrayList<T> dataObjects;
+  protected ArrayList<T>   dataObjects;
+  protected LayoutInflater inflater;
+
+  public MasterAdapter(Activity context) {
+	inflater = context.getLayoutInflater();
+  }
 
   @Override
   public int getCount() {
