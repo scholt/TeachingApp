@@ -1,9 +1,14 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.evernote.client.android.EvernoteSession;
 import com.evernote.client.android.OnClientCallback;
+import com.evernote.edam.notestore.NoteFilter;
+import com.evernote.edam.notestore.NoteList;
+import com.evernote.edam.type.Note;
+import com.evernote.edam.type.NoteSortOrder;
 import com.evernote.edam.type.Notebook;
 import com.evernote.thrift.transport.TTransportException;
 
@@ -13,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import de.tobiasfiebiger.mobile.teachapp.model.Material;
 
 /**
  * An activity representing a list of Materials. This activity has different
@@ -42,6 +48,8 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
   public void SubjectListActivity() {
 	  
   }
+  
+  public MaterialGridFragment mFragment;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -71,35 +79,56 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
 
 	// TODO: If exposing deep links into your app, handle intents here.
 	
-	mEvernoteSession.authenticate(this);
+	if( !mEvernoteSession.isLoggedIn()) {
+		mEvernoteSession.authenticate(this);
+	}
+	
 	
   }
   
+  public void getTagGuid(String subjectName) {
+	  
+  }
   
-  public void getNotelist(String subjectMame) {
+  public void getNotelist(String subjectName) {
 		try {
+			String query = "tag:" + subjectName;
 			
-			mEvernoteSession.getClientFactory().createNoteStoreClient().listNotebooks(new OnClientCallback<List<Notebook>>() {
+			NoteFilter filter = new NoteFilter();
+		    filter.setWords(query);
+		    filter.setOrder(NoteSortOrder.UPDATED.getValue());
+		    filter.setAscending(false);
+			
+		    //String authToken = EvernoteSession.getAuthToken();
+		    
+			mEvernoteSession.getClientFactory().createNoteStoreClient().findNotes(filter, 0, 20, new OnClientCallback<NoteList>() {
 				int mSelectedPos = -1;
 				
 				@Override
-				public void onSuccess(final List<Notebook> notebooks) {
-					for(Notebook notebook : notebooks) {
-						Log.i(TAG, notebook.getName());
+				public void onSuccess(NoteList notes) {
+					ArrayList<Material> ml = new ArrayList<Material>();
+					
+					for(Note note : notes.getNotes()) {
+						
+						Material m = new Material(note);
+						ml.add(m);
 					}
+					
+					mFragment.setMaterialData(ml);
 				}
 
 				@Override
 				public void onException(Exception exception) {
 					
 				}
+
 			});
 		}
 		catch (TTransportException e) {
 			// TODO Auto-generated catch block
 			Log.e(TAG, e.toString());
 		}
-	  }
+  }
   
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -127,9 +156,9 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
 	  // fragment transaction.
 	  Bundle arguments = new Bundle();
 	  arguments.putString(MaterialGridFragment.ARG_ITEM_ID, id);
-	  MaterialGridFragment fragment = new MaterialGridFragment();
-	  fragment.setArguments(arguments);
-	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
+	  mFragment = new MaterialGridFragment();
+	  mFragment.setArguments(arguments);
+	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, mFragment).commit();
 	} else {
 	  // In single-pane mode, simply start the detail activity
 	  // for the selected item ID.
