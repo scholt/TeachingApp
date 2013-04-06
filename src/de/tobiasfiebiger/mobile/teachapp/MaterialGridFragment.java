@@ -49,6 +49,13 @@ public class MaterialGridFragment extends Fragment {
 	array.add(new Material());
 	array.add(new Material());
 	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
+	array.add(new Material());
 
 	if (materialAdapter != null) {
 	  materialAdapter.setData(array);

@@ -29,6 +29,7 @@ public class AsyncImageView extends ImageView implements BitmapCallback {
 
   public void loadImage(final String imageUrl) {
 	Log.i(TAG, "*** loading image from url: " + imageUrl);
+	setImageDrawable(null);
 	if (cache == null) {
 	  cache = TeachingApp.getImageCache();
 	}
