@@ -1,13 +1,14 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
-
 import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
+import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 
 /**
  * A fragment representing a single Material detail screen. This fragment is
@@ -52,6 +53,13 @@ public class MaterialListFragment extends Fragment {
 	// Show the dummy content as text in a TextView.
 	if (mItem != null) {
 	  ((TextView) rootView.findViewById(R.id.material_detail_container)).setText(mItem.content);
+	}
+
+	try {
+	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
+	  gridview.setAdapter(new MaterialAdapter(getActivity()));
+	} catch (Exception e) {
+	  e.printStackTrace();
 	}
 
 	return rootView;

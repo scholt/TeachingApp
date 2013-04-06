@@ -5,6 +5,7 @@ public class Subject {
   private String id;
   private String title;
   private String tagId;
+  private int    drawableId;
   private int    materialCount;
 
   public String getId() {
@@ -37,6 +38,14 @@ public class Subject {
 
   public void setMaterialCount(int materialCount) {
 	this.materialCount = materialCount;
+  }
+
+  public int getDrawableId() {
+	return drawableId;
+  }
+
+  public void setDrawableId(int drawableId) {
+	this.drawableId = drawableId;
   }
 
 }

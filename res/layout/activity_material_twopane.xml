@@ -22,7 +22,7 @@
     -->
 
     <fragment
-        android:id="@+id/material_list"
+        android:id="@+id/subject_list"
         android:name="de.tobiasfiebiger.mobile.teachapp.SubjectListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"

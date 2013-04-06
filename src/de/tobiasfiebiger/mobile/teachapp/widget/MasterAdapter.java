@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import de.tobiasfiebiger.mobile.teachapp.TeachingApp;
 
 public abstract class MasterAdapter<T> extends BaseAdapter {
 
@@ -14,7 +15,17 @@ public abstract class MasterAdapter<T> extends BaseAdapter {
   protected LayoutInflater inflater;
 
   public MasterAdapter(Activity context) {
-	inflater = context.getLayoutInflater();
+	if (context != null) {
+	  inflater = context.getLayoutInflater();
+	} else {
+	  inflater = LayoutInflater.from(TeachingApp.getApp());
+	}
+  }
+
+  public void setData(ArrayList<T> newData) {
+	this.dataObjects = null;
+	this.dataObjects = newData;
+	notifyDataSetChanged();
   }
 
   @Override

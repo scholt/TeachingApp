@@ -1,11 +1,8 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 /**
@@ -17,7 +14,7 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link MaterialListFragment}.
  */
-public class MaterialListActivity extends FragmentActivity {
+public class MaterialListActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,7 @@ public class MaterialListActivity extends FragmentActivity {
 	  arguments.putString(MaterialListFragment.ARG_ITEM_ID, getIntent().getStringExtra(MaterialListFragment.ARG_ITEM_ID));
 	  MaterialListFragment fragment = new MaterialListFragment();
 	  fragment.setArguments(arguments);
-	  getSupportFragmentManager().beginTransaction().add(R.id.material_detail_container, fragment).commit();
+	  getFragmentManager().beginTransaction().add(R.id.material_detail_container, fragment).commit();
 	}
 
   }
@@ -59,7 +56,7 @@ public class MaterialListActivity extends FragmentActivity {
 	  //
 	  // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 	  //
-	  NavUtils.navigateUpTo(this, new Intent(this, SubjectListActivity.class));
+	  navigateUpToFromChild(this, new Intent(this, SubjectListActivity.class));
 	  return true;
 	}
 	return super.onOptionsItemSelected(item);

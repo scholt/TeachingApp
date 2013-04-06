@@ -1,13 +1,13 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
+import de.tobiasfiebiger.mobile.teachapp.util.MockUtil;
+import de.tobiasfiebiger.mobile.teachapp.widget.SubjectListAdapter;
 
 /**
  * A list fragment representing a list of Materials. This fragment also supports
@@ -53,26 +53,28 @@ public class SubjectListFragment extends ListFragment {
    * A dummy implementation of the {@link Callbacks} interface that does
    * nothing. Used only when this fragment is not attached to an activity.
    */
-  private static Callbacks sDummyCallbacks = new Callbacks() {
-	                                         @Override
-	                                         public void onItemSelected(String id) {
-	                                         }
-	                                       };
+  private static Callbacks   sDummyCallbacks = new Callbacks() {
+	                                           @Override
+	                                           public void onItemSelected(String id) {
+	                                           }
+	                                         };
+
+  private SubjectListAdapter subjectListAdapter;
 
   /**
    * Mandatory empty constructor for the fragment manager to instantiate the
    * fragment (e.g. upon screen orientation changes).
    */
   public SubjectListFragment() {
+	subjectListAdapter = new SubjectListAdapter(getActivity());
+	subjectListAdapter.setData(MockUtil.createMockSubjectList());
   }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 
-	// TODO: replace with a real list adapter.
-	setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(), android.R.layout.simple_list_item_activated_1,
-	    android.R.id.text1, DummyContent.ITEMS));
+	setListAdapter(subjectListAdapter);
   }
 
   @Override

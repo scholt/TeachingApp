@@ -1,13 +1,10 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
-import de.tobiasfiebiger.mobile.teachapp.model.Material;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.widget.GridView;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * An activity representing a list of Materials. This activity has different
@@ -25,7 +22,7 @@ import android.widget.GridView;
  * {@link SubjectListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class SubjectListActivity extends FragmentActivity implements SubjectListFragment.Callbacks {
+public class SubjectListActivity extends Activity implements SubjectListFragment.Callbacks {
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -36,7 +33,7 @@ public class SubjectListActivity extends FragmentActivity implements SubjectList
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_material_list);
+	setContentView(R.layout.activity_subject_list);
 
 	if (findViewById(R.id.material_detail_container) != null) {
 	  // The detail container view will be present only in the
@@ -47,18 +44,17 @@ public class SubjectListActivity extends FragmentActivity implements SubjectList
 
 	  // In two-pane mode, list items should be given the
 	  // 'activated' state when touched.
-	  ((SubjectListFragment) getSupportFragmentManager().findFragmentById(R.id.material_list)).setActivateOnItemClick(true);
-	  
+	  ((SubjectListFragment) getFragmentManager().findFragmentById(R.id.subject_list)).setActivateOnItemClick(true);
+
 	}
-	
-	GridView gridview = (GridView) findViewById(R.id.materials_gridview);
-    gridview.setAdapter(new MaterialAdapter(this));
-    
-//    gridview.setOnItemClickListener(new OnItemClickListener() {
-//        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//            Toast.makeText(HelloGridView.this, "" + position, Toast.LENGTH_SHORT).show();
-//        }
-//    });
+
+	// gridview.setOnItemClickListener(new OnItemClickListener() {
+	// public void onItemClick(AdapterView<?> parent, View v, int position, long
+	// id) {
+	// Toast.makeText(HelloGridView.this, "" + position,
+	// Toast.LENGTH_SHORT).show();
+	// }
+	// });
 
 	// TODO: If exposing deep links into your app, handle intents here.
   }
@@ -78,7 +74,7 @@ public class SubjectListActivity extends FragmentActivity implements SubjectList
 	  arguments.putString(MaterialListFragment.ARG_ITEM_ID, id);
 	  MaterialListFragment fragment = new MaterialListFragment();
 	  fragment.setArguments(arguments);
-	  getSupportFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
+	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
 
 	} else {
 	  // In single-pane mode, simply start the detail activity
