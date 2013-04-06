@@ -1,5 +1,7 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -43,6 +45,7 @@ public class MaterialListActivity extends FragmentActivity implements MaterialLi
 	  // In two-pane mode, list items should be given the
 	  // 'activated' state when touched.
 	  ((MaterialListFragment) getSupportFragmentManager().findFragmentById(R.id.material_list)).setActivateOnItemClick(true);
+	  
 	}
 
 	// TODO: If exposing deep links into your app, handle intents here.
@@ -54,6 +57,7 @@ public class MaterialListActivity extends FragmentActivity implements MaterialLi
    */
   @Override
   public void onItemSelected(String id) {
+	Crouton.makeText(this, "Yay Evernote Hackathon 2013! --- selected item: " + id, Style.INFO).show();
 	if (mTwoPane) {
 	  // In two-pane mode, show the detail view in this activity by
 	  // adding or replacing the detail fragment using a

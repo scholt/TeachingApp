@@ -1,5 +1,7 @@
 package de.tobiasfiebiger.mobile.teachapp;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -43,6 +45,7 @@ public class MaterialDetailActivity extends FragmentActivity {
 	  fragment.setArguments(arguments);
 	  getSupportFragmentManager().beginTransaction().add(R.id.material_detail_container, fragment).commit();
 	}
+
   }
 
   @Override

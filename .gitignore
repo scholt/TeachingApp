@@ -18,3 +18,14 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# Os stuff
+.DS_Store
+
+# other scm
+.svn
+.hg
+
+
+# Misc
+._*
