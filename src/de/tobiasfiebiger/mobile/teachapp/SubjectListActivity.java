@@ -2,6 +2,7 @@ package de.tobiasfiebiger.mobile.teachapp;
 
 import java.util.List;
 
+import com.evernote.client.android.EvernoteSession;
 import com.evernote.client.android.OnClientCallback;
 import com.evernote.edam.type.Notebook;
 import com.evernote.thrift.transport.TTransportException;
@@ -43,7 +44,7 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
   }
 
   @Override
-public void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_subject_list);
 
@@ -69,7 +70,11 @@ public void onCreate(Bundle savedInstanceState) {
 	// });
 
 	// TODO: If exposing deep links into your app, handle intents here.
+	
+	mEvernoteSession.authenticate(this);
+	
   }
+  
   
   public void getNotelist(String subjectMame) {
 		try {
@@ -95,6 +100,19 @@ public void onCreate(Bundle savedInstanceState) {
 			Log.e(TAG, e.toString());
 		}
 	  }
+  
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    switch (requestCode) {
+      //Update UI when oauth activity returns result
+      case EvernoteSession.REQUEST_CODE_OAUTH:
+        if (resultCode == Activity.RESULT_OK) {
+          getNotelist("history");
+        }
+        break;
+    }
+  }
 
   /**
    * Callback method from {@link SubjectListFragment.Callbacks} indicating that
@@ -112,9 +130,6 @@ public void onCreate(Bundle savedInstanceState) {
 	  MaterialGridFragment fragment = new MaterialGridFragment();
 	  fragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
-	  
-	  // getNotelist("History");
-
 	} else {
 	  // In single-pane mode, simply start the detail activity
 	  // for the selected item ID.
