@@ -2,9 +2,12 @@ package de.tobiasfiebiger.mobile.teachapp;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
+import de.tobiasfiebiger.mobile.teachapp.model.Material;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.GridView;
 
 /**
  * An activity representing a list of Materials. This activity has different
@@ -47,6 +50,15 @@ public class MaterialListActivity extends FragmentActivity implements MaterialLi
 	  ((MaterialListFragment) getSupportFragmentManager().findFragmentById(R.id.material_list)).setActivateOnItemClick(true);
 	  
 	}
+	
+	GridView gridview = (GridView) findViewById(R.id.materials_gridview);
+    gridview.setAdapter(new MaterialAdapter(this));
+    
+    gridview.setOnItemClickListener(new OnItemClickListener() {
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+            Toast.makeText(HelloGridView.this, "" + position, Toast.LENGTH_SHORT).show();
+        }
+    });
 
 	// TODO: If exposing deep links into your app, handle intents here.
   }
