@@ -40,7 +40,7 @@ public abstract class MasterAdapter<T> extends BaseAdapter {
   @Override
   public Object getItem(int position) {
 	Object obj = null;
-	if (dataObjects != null && dataObjects.size() < position) {
+	if (dataObjects != null && dataObjects.size() > position) {
 	  obj = dataObjects.get(position);
 	}
 	return obj;

@@ -3,48 +3,24 @@ package de.tobiasfiebiger.mobile.teachapp;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+import de.tobiasfiebiger.mobile.teachapp.model.Subject;
 import de.tobiasfiebiger.mobile.teachapp.util.MockUtil;
 import de.tobiasfiebiger.mobile.teachapp.widget.SubjectListAdapter;
 
-/**
- * A list fragment representing a list of Materials. This fragment also supports
- * tablet devices by allowing list items to be given an 'activated' state upon
- * selection. This helps indicate which item is currently being viewed in a
- * {@link MaterialGridFragment}.
- * <p>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
 public class SubjectListFragment extends ListFragment {
 
-  /**
-   * The serialization (saved instance state) Bundle key representing the
-   * activated item position. Only used on tablets.
-   */
+  private static final String TAG                      = "SubjectListFragment";
   private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
-  /**
-   * The fragment's current callback object, which is notified of list item
-   * clicks.
-   */
   private Callbacks           mCallbacks               = sDummyCallbacks;
-
-  /**
-   * The current activated item position. Only used on tablets.
-   */
   private int                 mActivatedPosition       = ListView.INVALID_POSITION;
 
-  /**
-   * A callback interface that all activities containing this fragment must
-   * implement. This mechanism allows activities to be notified of item
-   * selections.
-   */
   public interface Callbacks {
-	/**
-	 * Callback for when an item has been selected.
-	 */
 	public void onItemSelected(String id);
   }
 
@@ -60,10 +36,6 @@ public class SubjectListFragment extends ListFragment {
 
   private SubjectListAdapter subjectListAdapter;
 
-  /**
-   * Mandatory empty constructor for the fragment manager to instantiate the
-   * fragment (e.g. upon screen orientation changes).
-   */
   public SubjectListFragment() {
 	subjectListAdapter = new SubjectListAdapter(getActivity());
 	subjectListAdapter.setData(MockUtil.createMockSubjectList());
@@ -72,7 +44,6 @@ public class SubjectListFragment extends ListFragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-
 	setListAdapter(subjectListAdapter);
   }
 
@@ -112,7 +83,15 @@ public class SubjectListFragment extends ListFragment {
 
 	// Notify the active callbacks interface (the activity, if the
 	// fragment is attached to one) that an item has been selected.
-	mCallbacks.onItemSelected(subjectListAdapter.getItem(position).toString());
+
+	Object item = subjectListAdapter.getItem(position);
+	if (item instanceof Subject) {
+	  Subject s = (Subject) item;
+	  mCallbacks.onItemSelected(s.getId());
+	  Log.i(TAG, "****** item selected");
+	} else {
+	  Crouton.makeText(getActivity(), "could not obtain subject", Style.ALERT).show();
+	}
   }
 
   @Override

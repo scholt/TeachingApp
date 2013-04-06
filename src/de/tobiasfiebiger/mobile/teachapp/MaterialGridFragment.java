@@ -8,26 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
 import de.tobiasfiebiger.mobile.teachapp.model.Material;
 import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 
-/**
- * A fragment representing a single Material detail screen. This fragment is
- * either contained in a {@link SubjectListActivity} in two-pane mode (on
- * tablets) or a {@link MaterialListActivity} on handsets.
- */
 public class MaterialGridFragment extends Fragment {
-  /**
-   * The fragment argument representing the item ID that this fragment
-   * represents.
-   */
+
   public static final String ARG_ITEM_ID = "item_id";
 
-  /**
-   * Mandatory empty constructor for the fragment manager to instantiate the
-   * fragment (e.g. upon screen orientation changes).
-   */
   public MaterialGridFragment() {
   }
 
@@ -36,30 +23,32 @@ public class MaterialGridFragment extends Fragment {
 	super.onCreate(savedInstanceState);
 
 	if (getArguments().containsKey(ARG_ITEM_ID)) {
-
+	  // TODO load material list for specified subject id
 	}
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	View rootView = inflater.inflate(R.layout.fragment_material_detail, container, false);
-	MaterialAdapter ma = null;
+	MaterialAdapter materialAdapter = null;
 	try {
-	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
-	  ma = new MaterialAdapter(getActivity());
-	  gridview.setAdapter(ma);
+	  // GridView gridview = (GridView)
+	  // rootView.findViewById(R.id.materials_gridview);
+	  GridView gridview = (GridView) rootView;
+	  materialAdapter = new MaterialAdapter(getActivity());
+	  gridview.setAdapter(materialAdapter);
 	} catch (Exception e) {
 	  e.printStackTrace();
 	}
-	
+
 	ArrayList<Material> array = new ArrayList<Material>();
 	array.add(new Material());
 	array.add(new Material());
-	
-	if (ma != null) 
-		ma.setData(array);
+
+	if (materialAdapter != null) {
+	  materialAdapter.setData(array);
+	}
 	return rootView;
   }
-  
-  
+
 }
