@@ -19,9 +19,13 @@
         <item name="android:background">#fcfaf8</item>
         <item name="android:textColor">#2d2621</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_margin">20dp</item>
     </style>
 
     <style name="SubjectListItem" parent="AppBaseTheme">
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_margin">20dp</item>
         <item name="android:background">#ebe3d999</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#000000</item>

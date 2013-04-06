@@ -4,15 +4,15 @@
 
     <de.tobiasfiebiger.mobile.teachapp.widget.AsyncImageView
         android:id="@+id/material_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/subject_english" />
 
     <TextView
         android:id="@+id/material_text"
         style="@style/MaterialGridItemText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal"
         android:text="Test Text Lorem Ipsum Yabadabadooo" >
     </TextView>
