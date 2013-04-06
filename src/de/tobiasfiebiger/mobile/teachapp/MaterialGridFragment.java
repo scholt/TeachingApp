@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
-import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
 import de.tobiasfiebiger.mobile.teachapp.model.Material;
 import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 
