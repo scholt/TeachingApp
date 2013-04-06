@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
-import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
 import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 
 /**
@@ -39,10 +37,7 @@ public class MaterialGridFragment extends Fragment {
 	super.onCreate(savedInstanceState);
 
 	if (getArguments().containsKey(ARG_ITEM_ID)) {
-	  // Load the dummy content specified by the fragment
-	  // arguments. In a real-world scenario, use a Loader
-	  // to load content from a content provider.
-	  mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+
 	}
   }
 

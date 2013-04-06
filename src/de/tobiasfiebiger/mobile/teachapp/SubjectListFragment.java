@@ -5,7 +5,6 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import de.tobiasfiebiger.mobile.teachapp.dummy.DummyContent;
 import de.tobiasfiebiger.mobile.teachapp.util.MockUtil;
 import de.tobiasfiebiger.mobile.teachapp.widget.SubjectListAdapter;
 
@@ -113,7 +112,7 @@ public class SubjectListFragment extends ListFragment {
 
 	// Notify the active callbacks interface (the activity, if the
 	// fragment is attached to one) that an item has been selected.
-	mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+	mCallbacks.onItemSelected(subjectListAdapter.getItem(position).toString());
   }
 
   @Override
