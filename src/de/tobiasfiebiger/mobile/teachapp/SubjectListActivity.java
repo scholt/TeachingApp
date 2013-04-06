@@ -54,11 +54,11 @@ public class SubjectListActivity extends FragmentActivity implements SubjectList
 	GridView gridview = (GridView) findViewById(R.id.materials_gridview);
     gridview.setAdapter(new MaterialAdapter(this));
     
-    gridview.setOnItemClickListener(new OnItemClickListener() {
-        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            Toast.makeText(HelloGridView.this, "" + position, Toast.LENGTH_SHORT).show();
-        }
-    });
+//    gridview.setOnItemClickListener(new OnItemClickListener() {
+//        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//            Toast.makeText(HelloGridView.this, "" + position, Toast.LENGTH_SHORT).show();
+//        }
+//    });
 
 	// TODO: If exposing deep links into your app, handle intents here.
   }
