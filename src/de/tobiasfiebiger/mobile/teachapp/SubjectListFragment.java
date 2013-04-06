@@ -13,7 +13,7 @@ import de.tobiasfiebiger.mobile.teachapp.widget.SubjectListAdapter;
  * A list fragment representing a list of Materials. This fragment also supports
  * tablet devices by allowing list items to be given an 'activated' state upon
  * selection. This helps indicate which item is currently being viewed in a
- * {@link MaterialListFragment}.
+ * {@link MaterialGridFragment}.
  * <p>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.

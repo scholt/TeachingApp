@@ -16,7 +16,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link SubjectListFragment} and the item details (if present) is a
- * {@link MaterialListFragment}.
+ * {@link MaterialGridFragment}.
  * <p>
  * This activity also implements the required
  * {@link SubjectListFragment.Callbacks} interface to listen for item
@@ -65,14 +65,14 @@ public class SubjectListActivity extends Activity implements SubjectListFragment
    */
   @Override
   public void onItemSelected(String id) {
-	Crouton.makeText(this, "Yay Evernote Hackathon 2013! --- selected item: " + id, Style.INFO).show();
+	
 	if (mTwoPane) {
 	  // In two-pane mode, show the detail view in this activity by
 	  // adding or replacing the detail fragment using a
 	  // fragment transaction.
 	  Bundle arguments = new Bundle();
-	  arguments.putString(MaterialListFragment.ARG_ITEM_ID, id);
-	  MaterialListFragment fragment = new MaterialListFragment();
+	  arguments.putString(MaterialGridFragment.ARG_ITEM_ID, id);
+	  MaterialGridFragment fragment = new MaterialGridFragment();
 	  fragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().replace(R.id.material_detail_container, fragment).commit();
 
@@ -80,7 +80,7 @@ public class SubjectListActivity extends Activity implements SubjectListFragment
 	  // In single-pane mode, simply start the detail activity
 	  // for the selected item ID.
 	  Intent detailIntent = new Intent(this, MaterialListActivity.class);
-	  detailIntent.putExtra(MaterialListFragment.ARG_ITEM_ID, id);
+	  detailIntent.putExtra(MaterialGridFragment.ARG_ITEM_ID, id);
 	  startActivity(detailIntent);
 	}
   }

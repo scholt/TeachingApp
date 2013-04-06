@@ -12,7 +12,7 @@ import android.view.MenuItem;
  * .
  * <p>
  * This activity is mostly just a 'shell' activity containing nothing more than
- * a {@link MaterialListFragment}.
+ * a {@link MaterialGridFragment}.
  */
 public class MaterialListActivity extends Activity {
 
@@ -37,8 +37,8 @@ public class MaterialListActivity extends Activity {
 	  // Create the detail fragment and add it to the activity
 	  // using a fragment transaction.
 	  Bundle arguments = new Bundle();
-	  arguments.putString(MaterialListFragment.ARG_ITEM_ID, getIntent().getStringExtra(MaterialListFragment.ARG_ITEM_ID));
-	  MaterialListFragment fragment = new MaterialListFragment();
+	  arguments.putString(MaterialGridFragment.ARG_ITEM_ID, getIntent().getStringExtra(MaterialGridFragment.ARG_ITEM_ID));
+	  MaterialGridFragment fragment = new MaterialGridFragment();
 	  fragment.setArguments(arguments);
 	  getFragmentManager().beginTransaction().add(R.id.material_detail_container, fragment).commit();
 	}

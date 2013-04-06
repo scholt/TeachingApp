@@ -15,7 +15,7 @@ import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
  * either contained in a {@link SubjectListActivity} in two-pane mode (on
  * tablets) or a {@link MaterialListActivity} on handsets.
  */
-public class MaterialListFragment extends Fragment {
+public class MaterialGridFragment extends Fragment {
   /**
    * The fragment argument representing the item ID that this fragment
    * represents.
@@ -31,7 +31,7 @@ public class MaterialListFragment extends Fragment {
    * Mandatory empty constructor for the fragment manager to instantiate the
    * fragment (e.g. upon screen orientation changes).
    */
-  public MaterialListFragment() {
+  public MaterialGridFragment() {
   }
 
   @Override
@@ -49,11 +49,6 @@ public class MaterialListFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	View rootView = inflater.inflate(R.layout.fragment_material_detail, container, false);
-
-	// Show the dummy content as text in a TextView.
-	if (mItem != null) {
-	  ((TextView) rootView.findViewById(R.id.material_detail_container)).setText(mItem.content);
-	}
 
 	try {
 	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
