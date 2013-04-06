@@ -62,6 +62,7 @@ public class MaterialGridFragment extends Fragment {
 //	if (mAdapter != null) {
 //	  mAdapter.setData(mMaterialList);
 //	}
+
 	return rootView;
   }
 
