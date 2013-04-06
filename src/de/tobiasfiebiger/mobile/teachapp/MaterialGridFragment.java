@@ -2,8 +2,13 @@ package de.tobiasfiebiger.mobile.teachapp;
 
 import java.util.ArrayList;
 
+import com.evernote.edam.error.EDAMSystemException;
+import com.evernote.edam.error.EDAMUserException;
+import com.evernote.thrift.TException;
+
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,7 @@ import de.tobiasfiebiger.mobile.teachapp.widget.MaterialAdapter;
 public class MaterialGridFragment extends Fragment {
 
   public static final String ARG_ITEM_ID = "item_id";
+  public static final String TAG = "MaterialGridFragment";
 
   public MaterialGridFragment() {
   }

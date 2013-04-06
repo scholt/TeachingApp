@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +17,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <activity android:name="de.tobiasfiebiger.mobile.teachapp.TeachActivity">
+            
+        </activity>
         <activity
             android:name="de.tobiasfiebiger.mobile.teachapp.SubjectListActivity"
             android:label="@string/app_name" >
@@ -34,6 +37,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MaterialListActivity" />
         </activity>
+        <activity android:name="com.evernote.client.android.EvernoteOAuthActivity" 
+            android:configChanges="orientation|keyboardHidden" />
     </application>
 
 </manifest>
