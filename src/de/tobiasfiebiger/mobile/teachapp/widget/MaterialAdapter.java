@@ -1,92 +1,61 @@
 package de.tobiasfiebiger.mobile.teachapp.widget;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.URL;
-
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 import de.tobiasfiebiger.mobile.teachapp.R;
 import de.tobiasfiebiger.mobile.teachapp.TeachingApp;
 import de.tobiasfiebiger.mobile.teachapp.model.Material;
-import de.tobiasfiebiger.mobile.teachapp.util.ImageCache;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
 public class MaterialAdapter extends MasterAdapter<Material> {
-	
-	private static final int IO_BUFFER_SIZE = 4 * 1024;
-	private static final String TAG = "MaterialAdapter";
 
-	public MaterialAdapter(Activity context) {
-		super(context);
-	}
+  private static final String TAG = "MaterialAdapter";
 
-	public int getCount() {
-        return mThumbIds.length;
-    }
+  public MaterialAdapter(Activity context) {
+	super(context);
+  }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-        final ImageView imageView;
-        if (convertView == null) {
-        	convertView = inflater.inflate(R.layout.material_gridview_item, null);
-            imageView = (ImageView) convertView.findViewById(R.id.material_thumbnail);
-        } else {
-            imageView = (ImageView) convertView;
-        }
-        String url = "http://uwekamper.de/media/img/avatar_500.jpg";
-        
-        TeachingApp.getImageCache().requestImage(url, new ImageCache.BitmapCallback() {
-			
-			@Override
-			public void onCacheError(Exception error) {
-				// TODO Auto-generated method stub
-				//Log(error, "image download error");
-			}
-			
-			@Override
-			public void onBitmapLoaded(Bitmap image) {
-				// TODO Auto-generated method stub
-				imageView.setImageBitmap(image);
-			}
-		});
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent) {
+	if (inflater != null) {
+	  Material currentMaterial = dataObjects.get(position);
+	  MaterialViewHolder holder;
+	  if (convertView == null) {
+		convertView = inflater.inflate(R.layout.grid_item_material, null);
 
-        return imageView;
-    }
-	
-	private void closeStream(BufferedInputStream str) {
-		if (str == null)
-			return;
-		
-		try {
-			str.close();
-		} 
-		catch (Exception e) {
-			Log.e(TAG, "Error closing stream.");
+		holder = new MaterialViewHolder();
+		holder.text = (TextView) convertView.findViewById(R.id.material_text);
+		holder.image = (AsyncImageView) convertView.findViewById(R.id.material_image);
+
+		convertView.setTag(holder);
+	  } else {
+		holder = (MaterialViewHolder) convertView.getTag();
+	  }
+
+	  if (holder != null) {
+		if (currentMaterial != null) {
+		  // holder.text.setText(Html.fromHtml(text));
+		  if (holder.image != null) {
+			holder.image.loadImage("http://upload.wikimedia.org/wikipedia/commons/2/23/Lake_mapourika_NZ.jpeg");
+		  } else {
+			Toast.makeText(TeachingApp.getApp(), "image in view holder is null", Toast.LENGTH_LONG).show();
+		  }
+
+		} else {
+		  Toast.makeText(TeachingApp.getApp(), "material is null", Toast.LENGTH_LONG).show();
 		}
+	  } else {
+		Toast.makeText(TeachingApp.getApp(), "view holder is null", Toast.LENGTH_LONG).show();
+	  }
 	}
-	
-	private void closeStream(BufferedOutputStream str) {
-		
-		if (str == null)
-			return;
-		
-		try {
-			str.close();
-		} 
-		catch (Exception e) {
-			Log.e(TAG, "Error closing stream.");
-		}
-	}
+	return convertView;
+  }
 
-	// references to our images
-    private Integer[] mThumbIds = {
-    		R.drawable.ic_launcher
-    };
+}
 
+class MaterialViewHolder {
+  public TextView       text;
+  public AsyncImageView image;
 }

@@ -32,9 +32,7 @@ public class MaterialGridFragment extends Fragment {
 	View rootView = inflater.inflate(R.layout.fragment_material_detail, container, false);
 	MaterialAdapter materialAdapter = null;
 	try {
-	  // GridView gridview = (GridView)
-	  // rootView.findViewById(R.id.materials_gridview);
-	  GridView gridview = (GridView) rootView;
+	  GridView gridview = (GridView) rootView.findViewById(R.id.materials_gridview);
 	  materialAdapter = new MaterialAdapter(getActivity());
 	  gridview.setAdapter(materialAdapter);
 	} catch (Exception e) {
@@ -42,6 +40,7 @@ public class MaterialGridFragment extends Fragment {
 	}
 
 	ArrayList<Material> array = new ArrayList<Material>();
+	array.add(new Material());
 	array.add(new Material());
 	array.add(new Material());
 

@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <de.tobiasfiebiger.mobile.teachapp.widget.AsyncImageView
+        android:id="@+id/material_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/subject_english" />
+
+    <TextView
+        android:id="@+id/material_text"
+        style="@style/MaterialGridItemText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="Test Text Lorem Ipsum Yabadabadooo" >
+    </TextView>
+
+</FrameLayout>
