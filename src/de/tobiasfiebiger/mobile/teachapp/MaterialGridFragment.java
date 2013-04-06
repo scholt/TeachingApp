@@ -2,7 +2,6 @@ package de.tobiasfiebiger.mobile.teachapp;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.evernote.edam.error.EDAMSystemException;
 import com.evernote.edam.error.EDAMUserException;
 import com.evernote.thrift.TException;

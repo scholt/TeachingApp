@@ -8,6 +8,8 @@ import android.util.Log;
 import com.evernote.edam.type.Note;
 
 public class Material {
+	
+  public URL thumbnailUrl = null;
 
   public Material(Note note) {
 	this.note = note;
@@ -24,14 +26,16 @@ public class Material {
   public String getTitle() {
 	return note.getTitle();
   }
+  
+  public void setThumbnailURL(String myUrl) {
+	  try {
+		  thumbnailUrl = new URL(myUrl);
+	  } catch (MalformedURLException e) {
+		  Log.e(TAG, "could not generate thumbnail URL", e);
+	  }
+  }
 
-  public URL getThumbnailURL() {
-	URL thumbnailUrl = null;
-	try {
-	  thumbnailUrl = new URL("http://static.androidnext.de/androidnext-de-Marie-Schweiz.jpg");
-	} catch (MalformedURLException e) {
-	  Log.e(TAG, "could not generate thumbnail URL", e);
-	}
+  public URL getThumbnailURL() {	
 	return thumbnailUrl;
   }
   

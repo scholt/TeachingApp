@@ -46,7 +46,7 @@ public class SubjectListActivity extends TeachActivity implements SubjectListFra
   private boolean mTwoPane;
   
   public void SubjectListActivity() {
-	  
+	
   }
   
   public MaterialGridFragment mFragment;
